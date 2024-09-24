@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+{% block title %}
+    Choose Option
+{% endblock %}
+
+{% block content %}
+
+<style>
+    .service-request{
+        margin-top: 100px;
+        margin-bottom: 40px;
+        padding: 10px;
+    }
+
+    .sr{
+        margin-right: 70px;
+    }
+</style>
+<main id="main">
+    <section id="options" class="options">
+        <div class="container">
+            <div class="row mt-5 justify-content-center" data-aos="fade-up">
+                <div class="col-lg-4 btn-container">
+                    <h2>Choose an Option</h2>
+                    <a href="{% url 'ServiceRequest' %}" class="btn btn-primary service-request sr">Service Request</a>
+                    <a href="{% url 'TrackRequest' %}" class="btn btn-secondary service-request">Track Request</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}

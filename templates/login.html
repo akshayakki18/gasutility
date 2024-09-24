@@ -1,0 +1,141 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Login Page
+{% endblock %}
+
+{% block content %}
+<main id="main">
+    <section id="contact" class="contact">
+      <div class="container">
+        <div class="row mt-5 justify-content-center">
+          <div class="col-lg-4">
+              <div class="login-box">
+                  {% for message in messages %}
+                    <div class="alert {{ message.tags }} alert-dismissible fade-in-effect" role="alert">
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                      {{ message }}
+                    </div>
+                  {% endfor %}
+                  <form action="" method="post" class="login-form">
+                    {% csrf_token %}
+                    <div class="form-group">
+                      <input type="text" name="username" class="form-control input-effect" placeholder="Your username" required>
+                    </div>
+                    <div class="form-group">
+                      <input type="password" name="password" class="form-control input-effect" placeholder="Your Password" required>
+                    </div>
+                    <small class="forgot-password">Forgot Password? <a href="{% url 'forgetpassword' %}"> Reset it</a></small>
+                    <div class="text-center mt-3">
+                      <button class="btn btn-success btn-effect" type="submit">Login</button>
+                    </div>
+                  </form>
+                  <small class="mt-3 dont-acc">Don't have an account? <a href="{% url 'registration' %}"> Register Now</a></small>
+              </div>
+          </div>
+        </div>
+      </div>
+    </section>
+</main>
+
+<style>
+/* Background gradient for the contact section */
+.contact {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: white; /* Soft green to light green gradient */
+    color: white;
+    padding: 20px;
+}
+
+.dont-acc {
+  color: red;
+}
+
+.forgot-password {
+  color: red;
+}
+
+/* Style for the login box */
+.login-box {
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid #ccc; /* Light gray border */
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Fade-in effect for alert messages */
+.fade-in-effect {
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+}
+
+/* Keyframes for the fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Transition effects for input fields */
+.input-effect {
+    transition: all 0.3s ease;
+    border: 1px solid #ccc; /* Gray border */
+    background-color: #fff; /* White background */
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.input-effect:focus {
+    border-color: #ffeb3b; /* Yellow focus border */
+    box-shadow: 0 0 8px rgba(255, 235, 59, 0.6); /* Yellow glow */
+}
+
+/* Transition effect for submit button */
+.btn-effect {
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%; /* Full width of the parent container */
+    background-color: #388e3c; /* Green background */
+}
+
+.btn-effect:hover {
+    background-color: #92c296; /* Lighter green on hover */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Shadow on hover */
+}
+
+/* Smooth hover effect for links */
+a {
+    transition: color 0.2s ease;
+    color: #4caf50; /* Green links */
+}
+
+a:hover {
+    color: #66bb6a; /* Lighter green on hover */
+}
+
+/* Style for the "Forgot Password?" link */
+.forgot-password a {
+    color: #2196F3; /* Light blue color for the link */
+    text-decoration: underline; /* Underline for emphasis */
+}
+
+.forgot-password a:hover {
+    color: #1976D2; /* Darker blue on hover */
+}
+</style>
+{% endblock %}

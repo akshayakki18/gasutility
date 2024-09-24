@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Home Page
+{% endblock %}
+
+{% block content %}
+<div class="jumbotron">
+    <h1 class="text-center">Home Page</h1>
+    <div class="text-center">
+        <!-- Button to go to the customer portal -->
+        <a href="{% url 'button' %}" class="btn btn-primary">Go to Customer Portal</a>
+    </div>
+</div>
+{% endblock %}

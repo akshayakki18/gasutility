@@ -1,0 +1,76 @@
+{% extends 'layout.html' %}
+{% block title %}
+    Service Request Page
+{% endblock %}
+
+{% block content %}
+<style>
+    #customers {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    #customers td, #customers th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    #customers tr:nth-child(even) { background-color: #f2f2f2; }
+    #customers tr:hover { background-color: #ddd; }
+
+    #customers th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #04AA6D;
+        color: white;
+    }
+</style>
+
+<main id="main">
+
+    <h1>Service Requests</h1>
+    {% if user.is_authenticated %}
+        {% if service_requests %}
+            <table id="customers">
+                <thead>
+                    <tr>
+                        <th>Request ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Subject</th>
+                        <th>Service Request Type</th>
+                        <th>Message</th>
+                        <th>Submission Date</th>
+                        <th>Status</th>
+                        <th>Resolution Date</th>
+                      
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for myrequest in service_requests %}
+                    <tr>
+                        <td>{{ myrequest.id }}</td>
+                        <td>{{ myrequest.name }}</td>
+                        <td>{{ myrequest.email }}</td>
+                        <td>{{ myrequest.subject }}</td>
+                        <td>{{ myrequest.service_request_type }}</td>
+                        <td>{{ myrequest.message }}</td>
+                        <td>{{ myrequest.submission_date }}</td>
+                        <td>{{ myrequest.status }}</td>
+                        <td>{{ myrequest.resolution_date }}</td>
+                        
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No service requests found for this user.</p>
+        {% endif %}
+    {% else %}
+        <p>You must be logged in to view service requests.</p>
+        <a href="{% url 'login' %}">Login here</a>
+    {% endif %}
+</main><!-- End #main -->
+{% endblock %}
