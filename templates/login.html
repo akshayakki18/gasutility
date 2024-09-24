@@ -19,7 +19,7 @@
                       {{ message }}
                     </div>
                   {% endfor %}
-                  <form action="" method="post" class="login-form">
+                  <form action="{% url 'login' %}" method="post" class="login-form">
                     {% csrf_token %}
                     <div class="form-group">
                       <input type="text" name="username" class="form-control input-effect" placeholder="Your username" required>
